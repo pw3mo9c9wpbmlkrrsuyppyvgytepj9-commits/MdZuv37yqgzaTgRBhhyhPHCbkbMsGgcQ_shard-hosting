@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shard Hosting | Profile</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body class="page-with-nav">
+		<header class="site-header">
+			<div class="site-header-inner site-header-main">
+				<a class="site-logo" href="/index.html" title="Home">
+					<img src="/assets/logo.png" alt="Shard hosting" width="44" height="44" />
+				</a>
+				<nav class="site-nav-main" aria-label="Main">
+					<a href="/discord-hosting.html">Discord</a>
+					<a href="/support.html">Support</a>
+					<a href="/dashboard.html">Dashboard</a>
+				</nav>
+				<button type="button" class="site-profile" id="nav-avatar-btn" aria-label="Change profile picture">
+					<img id="nav-avatar" src="/assets/default_user.png" alt="" width="40" height="40" />
+				</button>
+			</div>
+		</header>
+
+		<input
+			id="avatar-file"
+			class="visually-hidden"
+			type="file"
+			accept="image/png,image/jpeg,image/gif,image/webp"
+			tabindex="-1"
+			aria-hidden="true"
+		/>
+
+		<main class="shell">
+			<section class="hero">
+				<h1 class="brand">Profile</h1>
+			</section>
+
+			<section class="dashboard-card">
+				<h2 class="section-title">Account</h2>
+				<p class="section-copy">Click your photo to upload a new avatar. Letters and numbers only for username (6–32 characters).</p>
+
+				<div class="profile-avatar-row">
+					<button type="button" class="avatar-upload-trigger" id="avatar-preview-btn" aria-label="Change profile picture">
+						<img
+							id="avatar-preview"
+							class="profile-avatar-preview"
+							src="/assets/default_user.png"
+							alt=""
+						/>
+					</button>
+				</div>
+
+				<label for="public-username">Username</label>
+				<input
+					id="public-username"
+					type="text"
+					autocomplete="nickname"
+					placeholder="6–32 letters or numbers only"
+					maxlength="32"
+					minlength="6"
+					required
+				/>
+				<p id="status-profile" class="status"></p>
+
+				<div class="row" style="margin-top: 10px">
+					<button id="save-profile" class="primary" type="button">Save profile</button>
+				</div>
+			</section>
+
+			<section class="dashboard-card" id="discord-section">
+				<h2 class="section-title">Discord</h2>
+				<p class="section-copy">Connect your Discord account to your Shard account.</p>
+				<p id="discord-linked" class="dashboard-meta hidden"></p>
+				<div id="discord-link-wrap" class="row">
+					<a class="btn-discord" href="/api/auth/discord/link">
+						<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+							<path
+								d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"
+							/>
+						</svg>
+						Link Discord account
+					</a>
+				</div>
+				<p id="status-discord" class="status"></p>
+			</section>
+
+			<section class="dashboard-card">
+				<h2 class="section-title">Security</h2>
+				<p class="section-copy">Update the email you use to sign in and your password.</p>
+
+				<div class="profile-subsection">
+					<h3>Email</h3>
+					<label for="email-current">Current password</label>
+					<input id="email-current" type="password" autocomplete="current-password" />
+					<label for="email-new">New email</label>
+					<input id="email-new" type="email" autocomplete="email" />
+					<div class="row">
+						<button id="save-email" class="primary" type="button">Update email</button>
+					</div>
+					<p id="status-email" class="status"></p>
+				</div>
+
+				<div class="profile-subsection">
+					<h3>Password</h3>
+					<label for="pw-current">Current password</label>
+					<input id="pw-current" type="password" autocomplete="current-password" />
+					<label for="pw-new">New password</label>
+					<input id="pw-new" type="password" autocomplete="new-password" />
+					<label for="pw-new2">Confirm new password</label>
+					<input id="pw-new2" type="password" autocomplete="new-password" />
+					<div class="row">
+						<button id="save-password" class="primary" type="button">Update password</button>
+					</div>
+					<p id="status-password" class="status"></p>
+				</div>
+
+				<div class="profile-subsection">
+					<h3>Delete account</h3>
+					<p class="section-copy" style="margin-top: 0">
+						Permanently delete your account and all stored profile data. This cannot be undone.
+					</p>
+					<label for="delete-password">Confirm with your password</label>
+					<input id="delete-password" type="password" autocomplete="current-password" />
+					<div class="row">
+						<button id="delete-account" class="btn-danger" type="button">Delete my account</button>
+					</div>
+					<p id="status-delete" class="status"></p>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			const navAvatarBtn = document.getElementById("nav-avatar-btn");
+			const navAvatar = document.getElementById("nav-avatar");
+			const avatarPreviewBtn = document.getElementById("avatar-preview-btn");
+			const avatarPreview = document.getElementById("avatar-preview");
+			const avatarFile = document.getElementById("avatar-file");
+			const publicUsername = document.getElementById("public-username");
+			const statusProfile = document.getElementById("status-profile");
+			const statusDiscord = document.getElementById("status-discord");
+			const statusEmail = document.getElementById("status-email");
+			const statusPassword = document.getElementById("status-password");
+			const statusDelete = document.getElementById("status-delete");
+			const discordLinked = document.getElementById("discord-linked");
+			const discordLinkWrap = document.getElementById("discord-link-wrap");
+
+			let pendingAvatarDataUrl = null;
+			let loadedUser = null;
+
+			function openAvatarPicker() {
+				avatarFile.click();
+			}
+
+			navAvatarBtn.addEventListener("click", openAvatarPicker);
+			avatarPreviewBtn.addEventListener("click", openAvatarPicker);
+
+			function setNavAndPreviewAvatar(dataUrl) {
+				const src = dataUrl || "/assets/default_user.png";
+				navAvatar.src = src;
+				avatarPreview.src = src;
+			}
+
+			function setStatus(el, message, type = "") {
+				el.textContent = message;
+				el.className = `status ${type}`.trim();
+			}
+
+			function isValidProfileUsername(value) {
+				return /^[a-zA-Z0-9]{6,32}$/.test(String(value || "").trim());
+			}
+
+			function readProfileUrlMessages() {
+				const params = new URLSearchParams(window.location.search);
+				const err = params.get("error");
+				if (err) {
+					setStatus(statusDiscord, err, "error");
+				}
+				const discord = params.get("discord");
+				if (discord === "linked") {
+					setStatus(statusDiscord, "Discord account linked.", "success");
+				} else if (discord === "already") {
+					setStatus(statusDiscord, "Discord is already linked to this account.", "success");
+				}
+				if (err || discord) {
+					const url = new URL(window.location.href);
+					url.searchParams.delete("error");
+					url.searchParams.delete("discord");
+					window.history.replaceState({}, "", url.pathname + (url.search || ""));
+				}
+			}
+
+			function renderDiscordBlock(user) {
+				if (user.discord_id) {
+					discordLinked.textContent = user.discord_username
+						? `Linked as @${user.discord_username}`
+						: "Discord account linked.";
+					discordLinked.classList.remove("hidden");
+					discordLinkWrap.classList.add("hidden");
+				} else {
+					discordLinked.classList.add("hidden");
+					discordLinkWrap.classList.remove("hidden");
+				}
+			}
+
+			async function apiRequest(path, options = {}) {
+				const response = await fetch(path, {
+					credentials: "same-origin",
+					headers: {
+						"Content-Type": "application/json",
+						...(options.headers || {}),
+					},
+					...options,
+				});
+				const payload = await response.json().catch(() => ({}));
+				if (!response.ok) {
+					throw new Error(payload.error || "Request failed");
+				}
+				return payload;
+			}
+
+			async function loadSession() {
+				try {
+					const data = await apiRequest("/api/me", { method: "GET" });
+					loadedUser = data.user;
+					publicUsername.value = loadedUser.public_username || "";
+					setNavAndPreviewAvatar(loadedUser.avatar_data_url);
+					pendingAvatarDataUrl = null;
+					renderDiscordBlock(loadedUser);
+				} catch {
+					window.location.href = "/login.html";
+				}
+			}
+
+			avatarFile.addEventListener("change", () => {
+				const file = avatarFile.files && avatarFile.files[0];
+				if (!file) {
+					return;
+				}
+				if (file.size > 350 * 1024) {
+					setStatus(statusProfile, "Choose an image under 350 KB.", "error");
+					avatarFile.value = "";
+					return;
+				}
+				const reader = new FileReader();
+				reader.onload = () => {
+					const result = reader.result;
+					if (typeof result !== "string" || !result.startsWith("data:image/")) {
+						setStatus(statusProfile, "Could not read that image.", "error");
+						return;
+					}
+					pendingAvatarDataUrl = result;
+					avatarPreview.src = result;
+					navAvatar.src = result;
+				};
+				reader.readAsDataURL(file);
+				avatarFile.value = "";
+			});
+
+			document.getElementById("save-profile").addEventListener("click", async () => {
+				setStatus(statusProfile, "");
+				const raw = publicUsername.value.trim();
+				if (!isValidProfileUsername(raw)) {
+					setStatus(
+						statusProfile,
+						"Username must be 6–32 characters, letters and numbers only.",
+						"error"
+					);
+					return;
+				}
+				const body = {
+					public_username: raw.toLowerCase(),
+				};
+				if (pendingAvatarDataUrl) {
+					body.avatar_data_url = pendingAvatarDataUrl;
+				}
+				try {
+					const data = await apiRequest("/api/profile", {
+						method: "PATCH",
+						body: JSON.stringify(body),
+					});
+					loadedUser = data.user;
+					pendingAvatarDataUrl = null;
+					setNavAndPreviewAvatar(data.user.avatar_data_url);
+					setStatus(statusProfile, "Profile saved.", "success");
+				} catch (e) {
+					setStatus(statusProfile, e.message || "Could not save profile.", "error");
+				}
+			});
+
+			document.getElementById("save-email").addEventListener("click", async () => {
+				setStatus(statusEmail, "");
+				const currentPassword = document.getElementById("email-current").value;
+				const newEmail = document.getElementById("email-new").value.trim();
+				try {
+					await apiRequest("/api/profile/email", {
+						method: "PATCH",
+						body: JSON.stringify({ currentPassword, newEmail }),
+					});
+					document.getElementById("email-current").value = "";
+					document.getElementById("email-new").value = "";
+					setStatus(statusEmail, "Email updated. You remain signed in.", "success");
+					await loadSession();
+				} catch (e) {
+					setStatus(statusEmail, e.message || "Could not update email.", "error");
+				}
+			});
+
+			document.getElementById("save-password").addEventListener("click", async () => {
+				setStatus(statusPassword, "");
+				const currentPassword = document.getElementById("pw-current").value;
+				const newPassword = document.getElementById("pw-new").value;
+				const newPassword2 = document.getElementById("pw-new2").value;
+				if (newPassword !== newPassword2) {
+					setStatus(statusPassword, "New passwords do not match.", "error");
+					return;
+				}
+				try {
+					await apiRequest("/api/profile/password", {
+						method: "PATCH",
+						body: JSON.stringify({ currentPassword, newPassword }),
+					});
+					document.getElementById("pw-current").value = "";
+					document.getElementById("pw-new").value = "";
+					document.getElementById("pw-new2").value = "";
+					setStatus(statusPassword, "Password updated.", "success");
+				} catch (e) {
+					setStatus(statusPassword, e.message || "Could not update password.", "error");
+				}
+			});
+
+			document.getElementById("delete-account").addEventListener("click", async () => {
+				setStatus(statusDelete, "");
+				const password = document.getElementById("delete-password").value;
+				if (!password) {
+					setStatus(statusDelete, "Enter your password to confirm.", "error");
+					return;
+				}
+				try {
+					const response = await fetch("/api/account", {
+						method: "DELETE",
+						credentials: "same-origin",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ password }),
+					});
+					const payload = await response.json().catch(() => ({}));
+					if (!response.ok) {
+						throw new Error(payload.error || "Request failed");
+					}
+					window.location.href = "/login.html";
+				} catch (e) {
+					setStatus(statusDelete, e.message || "Could not delete account.", "error");
+				}
+			});
+
+			readProfileUrlMessages();
+			loadSession();
+		</script>
+		<script src="/js/site-footer.js" defer></script>
+	</body>
+</html>

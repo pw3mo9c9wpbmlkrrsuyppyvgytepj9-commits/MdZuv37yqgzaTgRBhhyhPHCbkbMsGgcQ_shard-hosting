@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shard Hosting | Dashboard</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="/styles.css" />
+	</head>
+	<body class="page-with-nav">
+		<header class="site-header">
+			<div class="site-header-inner site-header-main">
+				<a class="site-logo" href="/index.html" title="Home">
+					<img src="/assets/logo.png" alt="Shard hosting" width="44" height="44" />
+				</a>
+				<nav class="site-nav-main" aria-label="Main">
+					<a href="/discord-hosting.html">Discord</a>
+					<a href="/support.html">Support</a>
+					<a href="/dashboard.html">Dashboard</a>
+				</nav>
+				<a class="site-profile" href="/profile.html" aria-label="Profile">
+					<img id="nav-avatar" src="/assets/default_user.png" alt="" width="40" height="40" />
+				</a>
+			</div>
+		</header>
+
+		<main class="shell">
+			<section class="hero">
+				<h1 class="brand">Dashboard</h1>
+			</section>
+
+			<section class="dashboard-card">
+				<h2 class="section-title">Your account</h2>
+				<p id="welcome" class="dashboard-meta">Checking your account...</p>
+				<div class="row">
+					<a class="primary" href="/profile.html">Profile settings</a>
+					<a class="ghost" href="/discord-hosting.html">Discord plans</a>
+					<button id="logout" class="ghost" type="button">Logout</button>
+				</div>
+				<p id="status" class="status"></p>
+			</section>
+		</main>
+
+		<script>
+			const welcomeEl = document.getElementById("welcome");
+			const statusEl = document.getElementById("status");
+			const logoutButton = document.getElementById("logout");
+			const navAvatar = document.getElementById("nav-avatar");
+
+			function setStatus(message, type = "") {
+				statusEl.textContent = message;
+				statusEl.className = `status ${type}`.trim();
+			}
+
+			async function apiRequest(path, options = {}) {
+				const response = await fetch(path, {
+					credentials: "same-origin",
+					headers: {
+						"Content-Type": "application/json",
+						...(options.headers || {}),
+					},
+					...options,
+				});
+
+				const payload = await response.json().catch(() => ({}));
+				if (!response.ok) {
+					throw new Error(payload.error || "Request failed");
+				}
+				return payload;
+			}
+
+			async function loadSession() {
+				try {
+					const data = await apiRequest("/api/me", { method: "GET" });
+					const u = data.user;
+					const display = u.public_username && u.public_username.trim() ? u.public_username : u.email;
+					welcomeEl.textContent = `Welcome, ${display}`;
+					navAvatar.src = u.avatar_data_url || "/assets/default_user.png";
+				} catch {
+					await fetch("/api/logout", { method: "POST", credentials: "same-origin" }).catch(() => {});
+					window.location.href = "/login.html";
+				}
+			}
+
+			logoutButton.addEventListener("click", async () => {
+				await fetch("/api/logout", { method: "POST", credentials: "same-origin" }).catch(() => {});
+				window.location.href = "/login.html";
+			});
+
+			loadSession();
+		</script>
+		<script src="/js/nav-avatar.js" defer></script>
+		<script src="/js/site-footer.js" defer></script>
+	</body>
+</html>

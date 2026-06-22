@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shard Hosting | Discord bot hosting</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="/styles.css" />
+	</head>
+	<body class="page-with-nav">
+		<header class="site-header">
+			<div class="site-header-inner site-header-main">
+				<a class="site-logo" href="/index.html" title="Home">
+					<img src="/assets/logo.png" alt="Shard hosting" width="44" height="44" />
+				</a>
+				<nav class="site-nav-main" aria-label="Main">
+					<a href="/discord-hosting.html">Discord</a>
+					<a href="/support.html">Support</a>
+					<a href="/login.html" id="nav-account-link">Sign in</a>
+				</nav>
+				<a class="site-profile" href="/profile.html" aria-label="Profile">
+					<img id="nav-avatar" src="/assets/default_user.png" alt="" width="40" height="40" />
+				</a>
+			</div>
+		</header>
+
+		<main class="shell shell-wide">
+			<section class="hero marketing-hero">
+				<img
+					src="/assets/main_banner.png"
+					alt=""
+					width="1100"
+					height="320"
+					style="width: 100%; max-width: 900px; height: auto; border-radius: 16px; margin-bottom: 24px"
+				/>
+				<h1>Discord bot hosting, simplified</h1>
+				<p class="marketing-lead">
+					Keep your bot online 24/7 with reliable hosting, clear plans, and support when you need it. Built for
+					moderation, music, utilities, and custom commands.
+				</p>
+				<div class="chip-row">
+					<span class="chip">24/7 uptime</span>
+					<span class="chip">Free tier</span>
+					<span class="chip">Human support</span>
+				</div>
+				<div class="row" style="justify-content: center; margin-top: 24px">
+					<a class="primary" href="/login.html">Get started</a>
+					<a class="ghost" href="/discord-hosting.html">View plans</a>
+				</div>
+			</section>
+
+			<section class="dashboard-card" style="width: 100%; max-width: none">
+				<h2 class="section-title">Why Shard Hosting</h2>
+				<p class="section-copy">Hosting that stays out of your way so your community can focus on what matters.</p>
+				<div class="feature-grid">
+					<div class="feature-card">
+						<h3>Always on</h3>
+						<p>Your bot stays running even when your PC is off — no more dropped connections overnight.</p>
+					</div>
+					<div class="feature-card">
+						<h3>Simple setup</h3>
+						<p>Sign up, pick a plan, and deploy. We help with tokens, intents, and getting online fast.</p>
+					</div>
+					<div class="feature-card">
+						<h3>Plans that scale</h3>
+						<p>Start free with 256 MB RAM, then upgrade as your server and bot workload grows.</p>
+					</div>
+					<div class="feature-card">
+						<h3>Real support</h3>
+						<p>Stuck on deployment or permissions? Our team and Discord community are here to help.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="dashboard-card" style="width: 100%; max-width: none; text-align: center">
+				<h2 class="section-title">Ready to host your bot?</h2>
+				<p class="section-copy">Create a free account or sign in to manage your hosting dashboard.</p>
+				<div class="row" style="justify-content: center">
+					<a class="primary" href="/login.html">Sign up free</a>
+					<a class="ghost" href="/discord-hosting.html">Compare plans</a>
+				</div>
+			</section>
+		</main>
+
+		<script>
+			(async function () {
+				const accountLink = document.getElementById("nav-account-link");
+				try {
+					const response = await fetch("/api/me", { credentials: "same-origin" });
+					if (response.ok && accountLink) {
+						accountLink.href = "/dashboard.html";
+						accountLink.textContent = "Dashboard";
+					}
+				} catch {
+					// Stay on Sign in for guests.
+				}
+			})();
+		</script>
+		<script src="/js/nav-avatar.js" defer></script>
+		<script src="/js/site-footer.js" defer></script>
+	</body>
+</html>

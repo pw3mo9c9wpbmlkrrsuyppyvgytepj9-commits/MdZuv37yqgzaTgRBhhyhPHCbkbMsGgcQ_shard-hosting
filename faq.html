@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Shard Hosting | FAQ</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="/styles.css" />
+	</head>
+	<body class="page-with-nav">
+		<header class="site-header">
+			<div class="site-header-inner site-header-main">
+				<a class="site-logo" href="/index.html" title="Home">
+					<img src="/assets/logo.png" alt="Shard hosting" width="44" height="44" />
+				</a>
+				<nav class="site-nav-main" aria-label="Main">
+					<a href="/dashboard.html">Dashboard</a>
+					<a href="/discord-hosting.html">Discord</a>
+					<a href="/support.html">Support</a>
+				</nav>
+				<a class="site-profile" href="/profile.html" aria-label="Profile">
+					<img id="nav-avatar" src="/assets/default_user.png" alt="" width="40" height="40" />
+				</a>
+			</div>
+		</header>
+
+		<main class="shell shell-wide faq-page">
+			<section class="hero">
+				<h1 class="brand" style="font-size: clamp(1.5rem, 4vw, 2.25rem)">FAQ</h1>
+				<p class="dashboard-meta"><a class="text-link" href="/dashboard.html">← Back to dashboard</a></p>
+			</section>
+
+			<div class="faq-link-notice" role="note">
+				<p>
+					We do not own the links provided in this FAQ. Please use all links at your own discretion. If in doubt, search the
+			resources for the information you need.
+				</p>
+			</div>
+
+			<section class="dashboard-card faq-section" style="width: 100%; max-width: none">
+				<h2 class="section-title faq-section-title">Frequently asked questions</h2>
+				<div class="faq-stack">
+					<div class="feature-card" id="setup">
+						<h3>How fast is setup?</h3>
+						<p>Most services are ready within a few minutes after successful payment and required files are provided.</p>
+					</div>
+					<div class="feature-card" id="refunds">
+						<h3>Do you offer refunds?</h3>
+						<p>
+							If you run into an issue, contact support first so we can fix it quickly. Refund requests are reviewed
+							case-by-case.
+						</p>
+					</div>
+					<div class="feature-card" id="upgrade">
+						<h3>Can I upgrade later?</h3>
+						<p>Yes. You can move to a larger plan at any time, wether this be you're growing, or just want more resources.</p>
+					</div>
+					<div class="feature-card" id="token">
+						<h3>How do I get the bot information?</h3>
+						<div class="faq-card-prose">
+							<p>
+								All steps use the
+								<a class="text-link" href="https://discord.com/developers/applications" target="_blank" rel="noopener noreferrer">Discord Developer Portal</a>.
+								For building OAuth yourself, see Discord’s
+								<a class="text-link" href="https://discord.com/developers/docs/topics/oauth2" target="_blank" rel="noopener noreferrer">OAuth2 documentation</a>.
+							</p>
+							<ol class="faq-steps">
+								<li>
+									Open the
+									<a class="text-link" href="https://discord.com/developers/applications" target="_blank" rel="noopener noreferrer">Developer Portal</a>
+									and open your application (or click <strong>New Application</strong> to create one).
+								</li>
+								<li>
+									<strong>CLIENT_ID:</strong> In <strong>General Information</strong>, copy <strong>Application ID</strong>.
+								</li>
+								<li>
+									<strong>CLIENT_SECRET:</strong> Open the <strong>OAuth2</strong> page. Under <strong>Client information</strong>, copy <strong>Client Secret</strong>. If you do not have it, use <strong>Reset Secret</strong> and save it, you will only see it once.
+								</li>
+								<li>
+									<strong>BOT_TOKEN:</strong> Open the <strong>Bot</strong> tab. If needed, add a bot first. Then copy the token in the <strong>Token</strong> area. If it is hidden, use <strong>Reset Token</strong> to create a new token and copy it.
+								</li>
+								<li>
+									On the <strong>Bot</strong> tab, under <strong>Privileged Gateway Intents</strong>, turn the needed ones on.
+								</li>
+								<li>
+									On <strong>OAuth2</strong> → <strong>Redirects</strong>, add every exact callback URL your app uses (for example `http://localhost:3000/api/auth/discord/callback`). A typo or wrong port here causes <q>Invalid OAuth2 redirect_uri</q> during login.
+								</li>
+								<li>
+									Never post <strong>Client Secret</strong> or <strong>Bot Token</strong> in public. Use environment variables, not public Git repositories or screenshots with tokens visible.
+								</li>
+							</ol>
+						</div>
+					</div>
+					<div class="feature-card" id="sharingfiles">
+						<h3>How do I share files?</h3>
+						<div class="faq-card-prose">
+							<p>Complete projects and clear notes get you hosted faster. Work through this list in order:</p>
+							<ol class="faq-steps">
+								<li>
+									<strong>Run the bot on yourself</strong> to fix any build and runtime errors before you open a ticket.
+								</li>
+								<li>
+									<strong>Send a full project package:</strong> source, dependency files (<code>package.json</code>, <code>requirements.txt</code>, etc.).
+								</li>
+								<li>
+									<strong>Share files with a normal download link.</strong> Options:
+									<a class="text-link" href="https://drive.google.com" target="_blank" rel="noopener noreferrer">Google Drive</a>
+									(share a folder or zip with access enabled),
+									<a class="text-link" href="https://wetransfer.com/" target="_blank" rel="noopener noreferrer">WeTransfer</a>,
+									or a <strong>ZIP</strong> you built with
+									<a class="text-link" href="https://www.win-rar.com" target="_blank" rel="noopener noreferrer">WinRAR</a>
+									or
+									<a class="text-link" href="https://www.7-zip.org/" target="_blank" rel="noopener noreferrer">7-Zip</a>.
+									One main link per ticket is easiest.
+								</li>
+								<li>
+									<strong>In the ticket, list:</strong> language/runtime (e.g. Node 20, Python 3.12), start command.
+								</li>
+
+								<li>
+									<strong>If you cannot use Google Drive, WeTransfer, or a zip file,</strong> say that at the <strong>start</strong> of the ticket and describe what you can use instead.
+								</li>
+							</ol>
+						</div>
+					</div>
+					<div class="feature-card" id="support">
+						<h3>Where do I get support?</h3>
+						<p>
+							Join our
+							<a class="text-link" href="https://discord.gg/2ad8RrHa8j" target="_blank" rel="noopener noreferrer">discord</a>.
+							Include logs and what you already tried so we can help faster.
+						</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="/js/nav-avatar.js" defer></script>
+		<script src="/js/site-footer.js" defer></script>
+		<script>
+			(function () {
+				function scrollToQuerySection() {
+					var q = new URLSearchParams(window.location.search);
+					var el = null;
+					var section = q.get("section");
+					if (section) {
+						el = document.getElementById(section);
+					}
+					if (!el) {
+						for (var key of q.keys()) {
+							if (key === "section") {
+								continue;
+							}
+							var val = q.get(key);
+							if (val !== "" && val != null) {
+								continue;
+							}
+							var found = document.getElementById(key);
+							if (found) {
+								el = found;
+								break;
+							}
+						}
+					}
+					if (el && window.location.search) {
+						el.scrollIntoView({ block: "start" });
+						history.replaceState(null, "", window.location.pathname + "#" + el.id);
+					}
+				}
+				if (document.readyState === "loading") {
+					document.addEventListener("DOMContentLoaded", scrollToQuerySection);
+				} else {
+					scrollToQuerySection();
+				}
+			})();
+		</script>
+	</body>
+</html>
